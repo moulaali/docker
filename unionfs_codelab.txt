@@ -1,0 +1,40 @@
+https://www.thegeekstuff.com/2013/05/linux-aufs/
+
+
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ mkdir dir3 dir4
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ touch dir3/f1 dir3/f2 dir4/f1 dir4/f2
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ mount -t aufs -o br=./dir3:./dir4 none ./merged
+mount: only root can use "--options" option
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ sudo mount -t aufs -o br=./dir3:./dir4 none ./merged
+/sbin/mount.aufs:mount.aufs.c:200: ./merged: No such file or directory
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ mkdir merged
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ sudo mount -t aufs -o br=./dir3:./dir4 none ./merged
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson$ cd ./merged
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ touch ./../dir3/new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ touch ./../dir4/new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ touch ./../dir4/new_file2
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ ls
+f1  f2  new_file  new_file2
+hi_moulaali@moulaali-roshan-cloud-ubuntu-2:~/unionfs_handson/merged$ exit
+
+Script done on Tue 03 Jan 2023 08:04:28 PM UTC
